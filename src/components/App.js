@@ -41,7 +41,7 @@ export default class App extends React.Component {
             value={this.state.inputValue}
           />
           <TouchableOpacity style={styles.createButton} onPress={this.createTask}>
-            <Text>+</Text>
+            <Text style={styles.createButtonText}>Add</Text>
           </TouchableOpacity>
         </View>
 
@@ -50,10 +50,12 @@ export default class App extends React.Component {
             <View key={index} style={styles.listItem}>
               <Text style={styles.listItemText}>{task}</Text>
               <TouchableOpacity style={styles.deleteButton} onPress={() => this.deleteTask(task)}>
-                <Text>x</Text>
+                <Text style={styles.deleteButtonText}>Delete</Text>
               </TouchableOpacity>
             </View>
           ))}
+
+          {this.state.tasks.length === 0 && <Text style={styles.emptyListText}>Yay, no tasks!</Text>}
         </View>
       </View>
     );
@@ -84,11 +86,13 @@ const styles = StyleSheet.create({
   },
   createButton: {
     backgroundColor: 'green',
-    color: 'white',
     padding: 5,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  createButtonText: {
+    color: 'white'
   },
 
   // List
@@ -107,7 +111,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   listItemText: {
-    color: '#cecece',
+    color: '#777',
     flex: 5,
     justifyContent: 'center',
     paddingLeft: 10
@@ -119,5 +123,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  deleteButtonText: {
+    color: 'white'
+  },
+  emptyListText: {
+    color: '#777',
+    paddingTop: 200,
+    textAlign: 'center'
   }
 });
